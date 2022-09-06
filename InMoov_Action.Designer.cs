@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PanelAction = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelControl = new System.Windows.Forms.Label();
             this.LabelCurrent = new System.Windows.Forms.Label();
             this.LabelName = new System.Windows.Forms.Label();
             this.LabelPIN = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.PanelAction.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
             this.PanelAction.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
             this.PanelAction.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
+            this.PanelAction.Controls.Add(this.LabelControl, 0, 7);
             this.PanelAction.Controls.Add(this.LabelCurrent, 0, 6);
             this.PanelAction.Controls.Add(this.LabelName, 0, 0);
             this.PanelAction.Controls.Add(this.LabelPIN, 0, 1);
@@ -58,22 +60,35 @@
             this.PanelAction.Location = new System.Drawing.Point(0, 0);
             this.PanelAction.Margin = new System.Windows.Forms.Padding(0);
             this.PanelAction.Name = "PanelAction";
-            this.PanelAction.RowCount = 7;
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.PanelAction.Size = new System.Drawing.Size(580, 560);
+            this.PanelAction.RowCount = 8;
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.PanelAction.Size = new System.Drawing.Size(580, 660);
             this.PanelAction.TabIndex = 0;
+            // 
+            // LabelControl
+            // 
+            this.LabelControl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LabelControl.AutoSize = true;
+            this.LabelControl.Location = new System.Drawing.Point(6, 636);
+            this.LabelControl.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelControl.Name = "LabelControl";
+            this.LabelControl.Size = new System.Drawing.Size(75, 15);
+            this.LabelControl.TabIndex = 7;
+            this.LabelControl.Text = "Control Type";
+            this.LabelControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LabelCurrent
             // 
             this.LabelCurrent.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LabelCurrent.AutoSize = true;
-            this.LabelCurrent.Location = new System.Drawing.Point(3, 534);
+            this.LabelCurrent.Location = new System.Drawing.Point(3, 603);
             this.LabelCurrent.Margin = new System.Windows.Forms.Padding(0);
             this.LabelCurrent.Name = "LabelCurrent";
             this.LabelCurrent.Size = new System.Drawing.Size(81, 15);
@@ -133,7 +148,7 @@
             // 
             this.LabelValue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LabelValue.AutoSize = true;
-            this.LabelValue.Location = new System.Drawing.Point(24, 303);
+            this.LabelValue.Location = new System.Drawing.Point(24, 339);
             this.LabelValue.Margin = new System.Windows.Forms.Padding(0);
             this.LabelValue.Name = "LabelValue";
             this.LabelValue.Size = new System.Drawing.Size(38, 15);
@@ -145,7 +160,7 @@
             // 
             this.LabelMin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LabelMin.AutoSize = true;
-            this.LabelMin.Location = new System.Drawing.Point(29, 499);
+            this.LabelMin.Location = new System.Drawing.Point(29, 570);
             this.LabelMin.Margin = new System.Windows.Forms.Padding(0);
             this.LabelMin.Name = "LabelMin";
             this.LabelMin.Size = new System.Drawing.Size(28, 15);
@@ -157,8 +172,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 561);
+            this.ClientSize = new System.Drawing.Size(784, 661);
             this.Controls.Add(this.PanelAction);
+            this.Enabled = false;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "InMoov_Action";
@@ -179,5 +195,6 @@
         private System.Windows.Forms.Label LabelMax;
         private System.Windows.Forms.Label LabelValue;
         private System.Windows.Forms.Label LabelMin;
+        private System.Windows.Forms.Label LabelControl;
     }
 }

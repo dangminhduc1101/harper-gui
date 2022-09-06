@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,7 +33,7 @@ namespace InMoov_GUI
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Color.Red,
                     Checked = false,
-                    Text = "Attach"
+                    Text = "Detached"
                 },
                 new NumericUpDown()
                 {
@@ -64,18 +65,26 @@ namespace InMoov_GUI
                     Maximum = 180,
                     Value = values[i - 1]
                 },
+                new CheckBox()
+                {
+                    Appearance = Appearance.Button,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.Orange,
+                    Checked = false,
+                    Text = "Single"
+                },
             };
                 foreach (Control c in l)
                 {
                     PanelAction.Controls.Add(c, i, l.IndexOf(c));
                     c.Anchor = c is TrackBar ? Anchor = AnchorStyles.Top | AnchorStyles.Bottom : AnchorStyles.None;
-                    if (c is CheckBox)
+                    if (l.IndexOf(c) == 2)
                     {
                         (c as CheckBox).CheckedChanged += (o, e) =>
                         {
                             CheckBox b = (CheckBox)o;
                             b.BackColor = b.Checked ? Color.Green : Color.Red;
-                            b.Text = b.Checked ? "Detach" : "Attach";
+                            b.Text = b.Checked ? "Attached" : "Detached";
                         };
                     }
                     if (c is TrackBar)
@@ -86,25 +95,33 @@ namespace InMoov_GUI
                     {
                         (c as NumericUpDown).ValueChanged += (o, e) => { (l[4] as TrackBar).Value = (int)(o as NumericUpDown).Value; };
                     }
+                    if (l.IndexOf(c) == 7)
+                    {
+                        (c as CheckBox).CheckedChanged += (o, e) =>
+                        {
+                            CheckBox b = (CheckBox)o;
+                            b.BackColor = b.Checked ? Color.Blue : Color.Orange;
+                            b.Text = b.Checked ? "Multiple" : "Single";
+                        };
+                    }
                 }
             }
         }
         public override string ToString()
         {
- 
-            string text(int col, int row)
+            int val(int col, int row)
             {
                 Control c = PanelAction.GetControlFromPosition(col, row);
                 if (c is CheckBox)
                 {
-                    return (c as CheckBox).Checked ? "A" : "D";
+                    return Convert.ToInt32((c as CheckBox).Checked);
                 }
                 else
                 {
-                    return (c as NumericUpDown).Value.ToString();
+                    return (int)(c as NumericUpDown).Value;
                 }
             }
-            return string.Join("/", Enumerable.Range(1, PanelAction.ColumnCount - 1).Select(i => string.Join(".", text(i, 1), text(i, 2), text(i, 5), text(i, 3), text(i, 6))));
+            return string.Join("/", Enumerable.Range(1, PanelAction.ColumnCount - 1).Select(i => string.Join(".", val(i, 1), val(i, 2), val(i, 5), val(i, 3), val(i, 6))));
         }
     }
 }
