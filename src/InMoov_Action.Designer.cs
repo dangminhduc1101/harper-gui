@@ -37,7 +37,10 @@
             this.LabelMax = new System.Windows.Forms.Label();
             this.LabelValue = new System.Windows.Forms.Label();
             this.LabelMin = new System.Windows.Forms.Label();
+            this.PanelMultipleAction = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelMultipleAction = new System.Windows.Forms.Label();
             this.PanelAction.SuspendLayout();
+            this.PanelMultipleAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelAction
@@ -57,6 +60,7 @@
             this.PanelAction.Controls.Add(this.LabelMax, 0, 3);
             this.PanelAction.Controls.Add(this.LabelValue, 0, 4);
             this.PanelAction.Controls.Add(this.LabelMin, 0, 5);
+            this.PanelAction.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelAction.Location = new System.Drawing.Point(0, 0);
             this.PanelAction.Margin = new System.Windows.Forms.Padding(0);
             this.PanelAction.Name = "PanelAction";
@@ -69,7 +73,7 @@
             this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.PanelAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.PanelAction.Size = new System.Drawing.Size(580, 660);
+            this.PanelAction.Size = new System.Drawing.Size(580, 661);
             this.PanelAction.TabIndex = 0;
             // 
             // LabelControl
@@ -168,19 +172,51 @@
             this.LabelMin.Text = "Min";
             this.LabelMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // PanelMultipleAction
+            // 
+            this.PanelMultipleAction.ColumnCount = 1;
+            this.PanelMultipleAction.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.PanelMultipleAction.Controls.Add(this.LabelMultipleAction, 0, 0);
+            this.PanelMultipleAction.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelMultipleAction.Location = new System.Drawing.Point(584, 0);
+            this.PanelMultipleAction.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelMultipleAction.Name = "PanelMultipleAction";
+            this.PanelMultipleAction.RowCount = 4;
+            this.PanelMultipleAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.PanelMultipleAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.PanelMultipleAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.PanelMultipleAction.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.PanelMultipleAction.Size = new System.Drawing.Size(200, 661);
+            this.PanelMultipleAction.TabIndex = 1;
+            // 
+            // LabelMultipleAction
+            // 
+            this.LabelMultipleAction.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LabelMultipleAction.AutoSize = true;
+            this.LabelMultipleAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMultipleAction.Location = new System.Drawing.Point(23, 24);
+            this.LabelMultipleAction.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelMultipleAction.Name = "LabelMultipleAction";
+            this.LabelMultipleAction.Size = new System.Drawing.Size(154, 18);
+            this.LabelMultipleAction.TabIndex = 2;
+            this.LabelMultipleAction.Text = "Multiple Servo Control";
+            this.LabelMultipleAction.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InMoov_Action
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.PanelMultipleAction);
             this.Controls.Add(this.PanelAction);
-            this.Enabled = false;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "InMoov_Action";
             this.Text = "InMoov_Action";
             this.PanelAction.ResumeLayout(false);
             this.PanelAction.PerformLayout();
+            this.PanelMultipleAction.ResumeLayout(false);
+            this.PanelMultipleAction.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +232,7 @@
         private System.Windows.Forms.Label LabelValue;
         private System.Windows.Forms.Label LabelMin;
         private System.Windows.Forms.Label LabelControl;
+        private System.Windows.Forms.TableLayoutPanel PanelMultipleAction;
+        private System.Windows.Forms.Label LabelMultipleAction;
     }
 }

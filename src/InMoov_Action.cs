@@ -8,13 +8,12 @@ namespace InMoov_GUI
 {
     public partial class InMoov_Action : Form
     {
-        public InMoov_Action(List<string> names, int port, List<int[]> limits, List<int> values, string text)
+        #region Initializer & Event Handler
+        private void InitializePanelAction(List<string> names, int port, List<int[]> limits, List<int> values)
         {
-            InitializeComponent();
-            Name = Text = text;
             for (int i = 1; i < PanelAction.ColumnCount; i++)
             {
-                var l = new List<Control>
+                var ListPanelAction = new List<Control>
             {
                 new Label()
                 {
@@ -39,7 +38,8 @@ namespace InMoov_GUI
                 {
                     Minimum = 0,
                     Maximum = 3000,
-                    Value = limits[i - 1][1]
+                    Value = limits[i - 1][1],
+                    Enabled = true
                 },
                 new TrackBar()
                 {
@@ -57,7 +57,8 @@ namespace InMoov_GUI
                 {
                     Minimum = 0,
                     Maximum = 3000,
-                    Value = limits[i - 1][0]
+                    Value = limits[i - 1][0],
+                    Enabled = true
                 },
                 new NumericUpDown()
                 {
@@ -71,54 +72,146 @@ namespace InMoov_GUI
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Color.Orange,
                     Checked = false,
-                    Text = "Single"
+                    Text = "Single",
+                    Enabled = false
                 },
             };
-                foreach (Control c in l)
+                foreach (Control control in ListPanelAction)
                 {
-                    PanelAction.Controls.Add(c, i, l.IndexOf(c));
-                    c.Anchor = c is TrackBar ? Anchor = AnchorStyles.Top | AnchorStyles.Bottom : AnchorStyles.None;
-                    if (l.IndexOf(c) == 2)
+                    PanelAction.Controls.Add(control, i, ListPanelAction.IndexOf(control));
+                    control.Anchor = control is TrackBar ? Anchor = AnchorStyles.Top | AnchorStyles.Bottom : AnchorStyles.None;
+                    if (ListPanelAction.IndexOf(control) == 2)
                     {
-                        (c as CheckBox).CheckedChanged += (o, e) =>
+                        (control as CheckBox).CheckedChanged += (obj, evt) =>
                         {
-                            CheckBox b = (CheckBox)o;
-                            b.BackColor = b.Checked ? Color.Green : Color.Red;
-                            b.Text = b.Checked ? "Attached" : "Detached";
+                            CheckBox button = (CheckBox)obj;
+                            button.BackColor = button.Checked ? Color.Green : Color.Red;
+                            button.Text = button.Checked ? "Attached" : "Detached";
+                            ListPanelAction[3].Enabled = !button.Checked;
+                            ListPanelAction[5].Enabled = !button.Checked;
                         };
                     }
-                    if (c is TrackBar)
+                    if (ListPanelAction.IndexOf(control) == 7)
                     {
-                        (c as TrackBar).Scroll += (o, e) => { (l[6] as NumericUpDown).Value = (o as TrackBar).Value; };
-                    }
-                    if (l.IndexOf(c) == 6)
-                    {
-                        (c as NumericUpDown).ValueChanged += (o, e) => { (l[4] as TrackBar).Value = (int)(o as NumericUpDown).Value; };
-                    }
-                    if (l.IndexOf(c) == 7)
-                    {
-                        (c as CheckBox).CheckedChanged += (o, e) =>
+                        (control as CheckBox).CheckedChanged += (obj, evt) =>
                         {
-                            CheckBox b = (CheckBox)o;
-                            b.BackColor = b.Checked ? Color.Blue : Color.Orange;
-                            b.Text = b.Checked ? "Multiple" : "Single";
+                            CheckBox button = (CheckBox)obj;
+                            button.BackColor = button.Checked ? Color.AliceBlue : Color.Orange;
+                            button.Text = button.Checked ? "Multiple" : "Single";
+                            ListPanelAction[4].Enabled = !button.Checked;
+                            ListPanelAction[6].Enabled = !button.Checked;
                         };
+                    }
+                    if (control is TrackBar)
+                    {
+                        (control as TrackBar).Scroll += (obj, evt) => { (ListPanelAction[6] as NumericUpDown).Value = (obj as TrackBar).Value; };
+                    }
+                    if (ListPanelAction.IndexOf(control) == 6)
+                    {
+                        (control as NumericUpDown).ValueChanged += (obj, evt) => { (ListPanelAction[4] as TrackBar).Value = (int)(obj as NumericUpDown).Value; };
                     }
                 }
             }
+            PanelAction.BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void InitializePanelMultipleAction()
+        {
+            var ListPanelMultipleAction = new List<Control>
+            {
+                new CheckBox()
+                {
+                    Appearance = Appearance.Button,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.MediumPurple,
+                    Checked = false,
+                    Text = "Disabled",
+                },
+                new TrackBar()
+                {
+                    Orientation = Orientation.Vertical,
+                    Minimum = 0,
+                    Maximum = 180,
+                    SmallChange = 1,
+                    LargeChange = 30,
+                    TickFrequency = 18,
+                    Dock = DockStyle.Fill,
+                    AutoSize = true,
+                    Value = 0,
+                    Enabled = false
+                },
+                new NumericUpDown()
+                {
+                    Minimum = 0,
+                    Maximum = 180,
+                    Value = 0,
+                    Enabled = false
+                }
+            };
+            foreach (Control control in ListPanelMultipleAction)
+            {
+                PanelMultipleAction.Controls.Add(control, 0, ListPanelMultipleAction.IndexOf(control) + 1);
+                control.Anchor = control is TrackBar ? Anchor = AnchorStyles.Top | AnchorStyles.Bottom : AnchorStyles.None;
+                if (control is CheckBox)
+                {
+                    control.Dock = DockStyle.Fill;
+                    (control as CheckBox).CheckedChanged += (obj, evt) =>
+                    {
+                        CheckBox button = (CheckBox)obj;
+                        button.BackColor = button.Checked ? Color.LightYellow : Color.MediumPurple;
+                        button.Text = button.Checked ? "Enabled" : "Disabled";
+                        ListPanelMultipleAction[1].Enabled = button.Checked;
+                        ListPanelMultipleAction[2].Enabled = button.Checked;
+                        for (int i = 1; i < PanelAction.ColumnCount; i++)
+                        {
+                            if (!button.Checked)
+                            {
+                                (PanelAction.GetControlFromPosition(i, 7) as CheckBox).Checked = button.Checked;
+                            }
+                            PanelAction.GetControlFromPosition(i, 7).Enabled = button.Checked;
+                        }
+                    };
+                }
+                if (control is TrackBar)
+                {
+                    (control as TrackBar).Scroll += (obj, evt) => { (ListPanelMultipleAction[2] as NumericUpDown).Value = (obj as TrackBar).Value; };
+                }
+                if (control is NumericUpDown)
+                {
+                    (control as NumericUpDown).ValueChanged += (obj, evt) =>
+                    {
+                        (ListPanelMultipleAction[1] as TrackBar).Value = (int)(obj as NumericUpDown).Value;
+                        for (int i = 1; i < PanelAction.ColumnCount; i++)
+                        {
+                            if ((PanelAction.GetControlFromPosition(i, 7) as CheckBox).Checked)
+                            {
+                                (PanelAction.GetControlFromPosition(i, 6) as NumericUpDown).Value = (int)(obj as NumericUpDown).Value;
+                            }
+                        }
+                    };
+                }
+            }
+            PanelMultipleAction.BorderStyle = BorderStyle.FixedSingle;
+        }
+        #endregion
+        public InMoov_Action(List<string> names, int port, List<int[]> limits, List<int> values, string text)
+        {
+            InitializeComponent();
+            InitializePanelAction(names, port, limits, values);
+            InitializePanelMultipleAction();
+            Name = Text = text;
         }
         public override string ToString()
         {
             int val(int col, int row)
             {
-                Control c = PanelAction.GetControlFromPosition(col, row);
-                if (c is CheckBox)
+                Control control = PanelAction.GetControlFromPosition(col, row);
+                if (control is CheckBox)
                 {
-                    return Convert.ToInt32((c as CheckBox).Checked);
+                    return Convert.ToInt32((control as CheckBox).Checked);
                 }
                 else
                 {
-                    return (int)(c as NumericUpDown).Value;
+                    return (int)(control as NumericUpDown).Value;
                 }
             }
             return string.Join("/", Enumerable.Range(1, PanelAction.ColumnCount - 1).Select(i => string.Join(".", val(i, 1), val(i, 2), val(i, 5), val(i, 3), val(i, 6))));

@@ -14,8 +14,7 @@ namespace InMoov_GUI
         private static readonly int[] limitBBE = { 700, 1500 };
         private static readonly List<string> hand = new List<string> { "Thumb", "Index", "Middle", "Ring", "Pinky" };
         private static readonly List<string> arm = new List<string> { "Wrist", "Elbow", "Rotate", "Pivot", "Omoplate" };
-        public static List<string> Ports { get; } = Enumerable.Range(1, 10).Select(i => "COM" + i).ToList();
-        public static List<string> Bauds { get; } = new List<int> { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000 }.ConvertAll<string>(x => x.ToString());
+        public static string[] Bauds { get; } = new List<int> { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000 }.ConvertAll<string>(x => x.ToString()).ToArray();
         public static List<string> ModulesAction { get; } = new List<string> { "Left Hand", "Right Hand", "Left Arm", "Right Arm", "Head", "Neck && Stomach" };
         public static List<string> ModulesPerception { get; } = new List<string> { "Vision", "Auditory", "Kinect", "Tactile" };
         public static List<string> Modules { get; } = ModulesAction.Concat(ModulesPerception).ToList();
@@ -30,8 +29,8 @@ namespace InMoov_GUI
         {
             {"Left Hand", new List<int[]> {limitDS, limitJX, limitJX, limitJX, limitDS}},
             {"Right Hand", new List<int[]> {limitDS, limitJX, limitJX, limitJX, limitDS}},
-            {"Left Arm", new List<int[]> {limitMG, limitBBE, limitBB, limitBB, limitBB}},
-            {"Right Arm",  new List<int[]> {limitMG, limitBBE, limitBB, limitBB, limitBB}}
+            {"Left Arm", new List<int[]> {limitMG, limitBBE, limitBB, limitBB, limitBBE}},
+            {"Right Arm",  new List<int[]> {limitMG, limitBBE, limitBB, limitBB, limitBBE}}
         };
         public static Dictionary<string, List<int>> Values { get; } = new Dictionary<string, List<int>>()
         {

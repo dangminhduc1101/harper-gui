@@ -48,25 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constant.cs" />
-    <Compile Include="InMoov.cs">
+    <Compile Include="src\Constant.cs" />
+    <Compile Include="src\InMoov.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InMoov.Designer.cs">
+    <Compile Include="src\InMoov.Designer.cs">
       <DependentUpon>InMoov.cs</DependentUpon>
     </Compile>
-    <Compile Include="InMoov_Action.cs">
+    <Compile Include="src\InMoov_Action.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InMoov_Action.Designer.cs">
+    <Compile Include="src\InMoov_Action.Designer.cs">
       <DependentUpon>InMoov_Action.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="src\InMoov_Gesture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\InMoov_Gesture.Designer.cs">
+      <DependentUpon>InMoov_Gesture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="InMoov.resx">
+    <EmbeddedResource Include="src\InMoov.resx">
       <DependentUpon>InMoov.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InMoov_Action.resx">
+    <EmbeddedResource Include="src\InMoov_Action.resx">
       <DependentUpon>InMoov_Action.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -79,6 +85,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\InMoov_Gesture.resx">
+      <DependentUpon>InMoov_Gesture.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,7 +99,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="cfg\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="gestures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
