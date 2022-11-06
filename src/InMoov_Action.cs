@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -86,9 +86,10 @@ namespace InMoov_GUI
                         {
                             CheckBox button = (CheckBox)obj;
                             button.BackColor = button.Checked ? Color.Green : Color.Red;
-                            button.Text = button.Checked ? "Attached" : "Detached";
+                            button.Text = button.Checked ? "Enabled" : "Disabled";
                             ListPanelAction[3].Enabled = !button.Checked;
                             ListPanelAction[5].Enabled = !button.Checked;
+                            ControlBox = FormCloseAllowed();
                         };
                     }
                     if (ListPanelAction.IndexOf(control) == 7)
@@ -200,7 +201,7 @@ namespace InMoov_GUI
             InitializePanelMultipleAction();
             Name = Text = text;
         }
-        public override string ToString()
+        public List<string> ToStringList()
         {
             int val(int col, int row)
             {
@@ -214,7 +215,23 @@ namespace InMoov_GUI
                     return (int)(control as NumericUpDown).Value;
                 }
             }
-            return string.Join("/", Enumerable.Range(1, PanelAction.ColumnCount - 1).Select(i => string.Join(".", val(i, 1), val(i, 2), val(i, 5), val(i, 3), val(i, 6))));
+            var ls = new List<String>();
+            for (int i = 1; i < PanelAction.ColumnCount; i++)
+            {
+                ls.Add(string.Join(".", val(i, 1), val(i, 2), val(i, 5), val(i, 3), val(i, 6)) + "\n");
+            }
+            return ls;
         }
+        private bool FormCloseAllowed()
+        {
+            for (int i = 1; i < PanelAction.ColumnCount; i++)
+            {
+                if ((PanelAction.GetControlFromPosition(i, 2) as CheckBox).Checked == true)
+                {
+                    return false;
+                }
+            }
+                return true;
+        }   
     }
 }

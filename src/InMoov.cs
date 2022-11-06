@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
-using System.IO;
 
 namespace InMoov_GUI
 {
@@ -12,7 +11,9 @@ namespace InMoov_GUI
     {
         #region Initializer
 #pragma warning disable CS0649, IDE0044
-        private string portL, portR, baudL, baudR;
+        private string portL, portR;
+        private string baudL = "115200"; 
+        private string baudR = "115200";
         private System.Timers.Timer TimerMain;
         private Func<int, int, int> GetModuleIndex = (col, row) => col - 1 + 2 * (row - 4);
 #pragma warning restore CS0649, IDE0044
@@ -35,23 +36,26 @@ namespace InMoov_GUI
                             ComboBox box = (ComboBox)obj;
                             box.Items.Clear();
                             box.Items.AddRange(SerialPort.GetPortNames());
-                            box.Items.Remove(((ComboBox)PanelMain.GetControlFromPosition((i + 1) % 2, 1)).Text);
+                            box.Items.Remove(((ComboBox)PanelMain.GetControlFromPosition(i % 2 + 1, 1)).Text);
                         };
-                        ((ComboBox)PanelMain.GetControlFromPosition(i, 2)).Items.AddRange(Constant.Bauds);
-                        ((ComboBox)PanelMain.GetControlFromPosition(i, 2)).Text = "115200";
+                        if (j == 2)
+                        {
+                            ((ComboBox)PanelMain.GetControlFromPosition(i, j)).Items.AddRange(Constant.Bauds);
+                            ((ComboBox)PanelMain.GetControlFromPosition(i, j)).Text = "115200";
+                        }
                         ((ComboBox)PanelMain.GetControlFromPosition(i, j)).SelectedIndexChanged += SerialPortChanged;
                     }
                     else
                     {
                         PanelMain.Controls.Add(new Button()
                         {
-                            Enabled = j > 6,
+                            Enabled = false,
                             Text = j == 3 ? "Connect" : Constant.Modules[GetModuleIndex(i, j)],
                             TextAlign = ContentAlignment.MiddleCenter
                         },
                             i, j);
                         ((Button)PanelMain.GetControlFromPosition(i, j)).Click += 
-                            j == 3 ? new EventHandler(SerialPortConnect) : (j <= 6 ? new EventHandler(ActionOpen) : new EventHandler(PerceptionOpen));
+                            j == 3 ? new EventHandler(SerialPortConnect) : (j <= 6 ? new EventHandler(ActionOpen) : null);
                     }
                     PanelMain.GetControlFromPosition(i, j).Anchor = AnchorStyles.Left | AnchorStyles.Right;
                     PanelMain.GetControlFromPosition(i, j).Margin = new Padding(20, 0, 20, 0);
@@ -123,7 +127,6 @@ namespace InMoov_GUI
                     {
                         PanelMain.GetControlFromPosition(col, i).Enabled = false;
                     }
-                    PanelGesture.Enabled = false;
                 }
             }
             UpdateSerialPort(SerialPortL, 1, portL, baudL);
@@ -148,7 +151,6 @@ namespace InMoov_GUI
                             {
                                 PanelMain.GetControlFromPosition(col, i).Enabled = true;
                             }
-                            PanelGesture.Enabled = true;
                         }
                         catch (System.IO.IOException)
                         {
@@ -187,7 +189,7 @@ namespace InMoov_GUI
             {
                 InMoov_Action module = new InMoov_Action(names, port, limits, values, button.Text);
                 module.FormClosed += (obj, evt0) => 
-                { 
+                {
                     button.Enabled = true;
                     if (!CheckAnyActionOpen())
                     {
@@ -202,8 +204,6 @@ namespace InMoov_GUI
                 MessageBox.Show("Module Not Initialized!");
             }
         }
-        private void PerceptionOpen(object sender, EventArgs evt)
-        {}
         private void CellPaintMain(object sender, TableLayoutCellPaintEventArgs evt)
         {
             if (new int[] {0, 1, 4, 7}.Contains(evt.Row))
@@ -229,49 +229,40 @@ namespace InMoov_GUI
         private void TimerElapsed(object sender, EventArgs evt)
         {
             int count = Constant.ModulesAction.Count / 2;
-            var textL = Enumerable.Repeat("NA", count).ToArray();
-            var textR = Enumerable.Repeat("NA", count).ToArray();
+            var textL = new List<string>();
+            var textR = new List<string>();
             var forms = Application.OpenForms.Cast<Form>().Select(f => f.Name);
             foreach (string s in Constant.ModulesAction)
             {
                 if (forms.Contains(s))
                 {
-                    string s0 = Application.OpenForms[s].ToString();
+                    List<string> s0 = ((InMoov_Action)Application.OpenForms[s]).ToStringList();
                     int index = Constant.ModulesAction.IndexOf(s);
                     if (index % 2 == 0)
                     {
-                        textL[index / 2] = s0;
+                        textL.AddRange(s0);
                     }
                     else
                     {
-                        textR[(index - 1)/ 2] = s0;
+                        textR.AddRange(s0);
                     }
                 }
             }
             if (SerialPortL.IsOpen)
             {
-                SerialPortL.Write(string.Join("+", textL));
+                foreach (string s in textL)
+                {
+                    SerialPortL.Write(s);
+                }
             }
             if (SerialPortR.IsOpen)
             {
-                SerialPortR.Write(string.Join("+", textR));
+                foreach (string s in textR)
+                {
+                    SerialPortR.Write(s);
+                }
             }
         }
-        private void ReadGesture(object sender, EventArgs e)
-        {
-            OpenFileDialog file = new OpenFileDialog
-            {
-                InitialDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\gestures\\",
-                Filter = "Gesture files (*.gesture)|*.gesture",
-                FilterIndex = 1,
-                RestoreDirectory = true
-            };
-            if (file.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = file.FileName;
-            }
-        }
-
         #endregion
         public InMoov()
         {

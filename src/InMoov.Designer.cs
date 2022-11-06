@@ -204,7 +204,6 @@
             this.ButtonRead.TabIndex = 2;
             this.ButtonRead.Text = "Read Gesture";
             this.ButtonRead.UseVisualStyleBackColor = true;
-            this.ButtonRead.Click += ReadGesture;
             // 
             // BoxGesture
             // 
