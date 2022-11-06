@@ -1,7 +1,7 @@
 ﻿
-namespace InMoov_GUI.src
+namespace harper_gui_winforms.src
 {
-    partial class InMoov_Gesture
+    partial class Gesture
     {
         /// <summary>
         /// Required designer variable.

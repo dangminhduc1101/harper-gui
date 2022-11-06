@@ -1,12 +1,11 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
-namespace InMoov_GUI
+namespace harper_gui_winforms
 {
-    public partial class InMoov_Action : Form
+    public partial class Action : Form
     {
         #region Initializer & Event Handler
         private void InitializePanelAction(List<string> names, int port, List<int[]> limits, List<int> values)
@@ -194,7 +193,7 @@ namespace InMoov_GUI
             PanelMultipleAction.BorderStyle = BorderStyle.FixedSingle;
         }
         #endregion
-        public InMoov_Action(List<string> names, int port, List<int[]> limits, List<int> values, string text)
+        public Action(List<string> names, int port, List<int[]> limits, List<int> values, string text)
         {
             InitializeComponent();
             InitializePanelAction(names, port, limits, values);

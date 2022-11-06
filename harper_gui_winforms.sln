@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32616.157
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMoov GUI", "InMoov GUI.csproj", "{E128B2DF-8C7F-4134-97C6-D70ADA520F09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "harper_gui_winforms", "harper_gui_winforms.csproj", "{E128B2DF-8C7F-4134-97C6-D70ADA520F09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

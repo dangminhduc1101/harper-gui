@@ -5,9 +5,9 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 
-namespace InMoov_GUI
+namespace harper_gui_winforms
 {
-    public partial class InMoov : Form
+    public partial class Main : Form
     {
         #region Initializer
 #pragma warning disable CS0649, IDE0044
@@ -110,7 +110,7 @@ namespace InMoov_GUI
         private void SerialPortChanged(object sender, EventArgs evt)
         {
             var box = (ComboBox)sender;
-            typeof(InMoov).GetField(box.Name, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(this, box.Text);
+            typeof(Main).GetField(box.Name, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(this, box.Text);
             void UpdateSerialPort(SerialPort serial, int col, string port, string baud)
             {
                 if (PanelMain.GetColumn(box) == col)
@@ -187,7 +187,7 @@ namespace InMoov_GUI
                 Constant.Limits.TryGetValue(button.Text, out List<int[]> limits) &&
                 Constant.Values.TryGetValue(button.Text, out List<int> values))
             {
-                InMoov_Action module = new InMoov_Action(names, port, limits, values, button.Text);
+                Action module = new Action(names, port, limits, values, button.Text);
                 module.FormClosed += (obj, evt0) => 
                 {
                     button.Enabled = true;
@@ -236,7 +236,7 @@ namespace InMoov_GUI
             {
                 if (forms.Contains(s))
                 {
-                    List<string> s0 = ((InMoov_Action)Application.OpenForms[s]).ToStringList();
+                    List<string> s0 = ((Action)Application.OpenForms[s]).ToStringList();
                     int index = Constant.ModulesAction.IndexOf(s);
                     if (index % 2 == 0)
                     {
@@ -264,7 +264,7 @@ namespace InMoov_GUI
             }
         }
         #endregion
-        public InMoov()
+        public Main()
         {
             InitializeComponent();
             InitializeUI();

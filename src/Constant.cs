@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace InMoov_GUI
+namespace harper_gui_winforms
 {
     internal class Constant
     {

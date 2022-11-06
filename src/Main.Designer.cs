@@ -1,6 +1,6 @@
-﻿namespace InMoov_GUI
+﻿namespace harper_gui_winforms
 {
-    partial class InMoov
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.

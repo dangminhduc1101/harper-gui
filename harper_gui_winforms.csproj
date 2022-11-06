@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E128B2DF-8C7F-4134-97C6-D70ADA520F09}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>InMoov_GUI</RootNamespace>
-    <AssemblyName>InMoov GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>harper_gui_winforms</RootNamespace>
+    <AssemblyName>harper_gui_winforms</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -49,31 +49,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Constant.cs" />
-    <Compile Include="src\InMoov.cs">
+    <Compile Include="src\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\InMoov.Designer.cs">
-      <DependentUpon>InMoov.cs</DependentUpon>
+    <Compile Include="src\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\InMoov_Action.cs">
+    <Compile Include="src\Action.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\InMoov_Action.Designer.cs">
-      <DependentUpon>InMoov_Action.cs</DependentUpon>
+    <Compile Include="src\Action.Designer.cs">
+      <DependentUpon>Action.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\InMoov_Gesture.cs">
+    <Compile Include="src\Gesture.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\InMoov_Gesture.Designer.cs">
-      <DependentUpon>InMoov_Gesture.cs</DependentUpon>
+    <Compile Include="src\Gesture.Designer.cs">
+      <DependentUpon>Gesture.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="src\InMoov.resx">
-      <DependentUpon>InMoov.cs</DependentUpon>
+    <EmbeddedResource Include="src\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\InMoov_Action.resx">
-      <DependentUpon>InMoov_Action.cs</DependentUpon>
+    <EmbeddedResource Include="src\Action.resx">
+      <DependentUpon>Action.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,9 +85,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="src\InMoov_Gesture.resx">
-      <DependentUpon>InMoov_Gesture.cs</DependentUpon>
+    <EmbeddedResource Include="src\Gesture.resx">
+      <DependentUpon>Gesture.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,9 +98,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cfg\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="gestures\" />

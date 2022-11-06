@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace InMoov_GUI
+namespace harper_gui_winforms
 {
     internal static class Program
     {
@@ -13,7 +13,7 @@ namespace InMoov_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InMoov());
+            Application.Run(new Main());
         }
     }
 }

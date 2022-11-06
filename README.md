@@ -8,5 +8,5 @@ This prototype only works in limited functionality with VS debug mode, with the 
 2. Arduino microcontroller(s) with [arduino_servo_parser](https://github.com/dangminhduc1101/arduino_servo_parser) uploaded.
 ## Installation
 1. Clone this repository
-2. Open InMoov GUI.sln with Visual Studio
+2. Open harper_gui_winforms.sln with Visual Studio
 3. Run the program in Debug mode
