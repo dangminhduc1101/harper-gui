@@ -1,4 +1,4 @@
-# harper_gui_winforms_protopye
+# harper_gui_winforms_prototype
 ## Description
 A prototype of the WinForms C#-based graphical user interface that controls the humanoid robot HARPER in Vassar College's Robotics Lab. The prototype helps easily control one or multiple servos at the same time. 
 ## Notes
