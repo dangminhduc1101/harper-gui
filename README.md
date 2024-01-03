@@ -1,4 +1,4 @@
-# harper_gui
+# Harper GUI
 ## Description
 A C#-based graphical user interface for the humanoid robot HARPER in Vassar College's Robotics Lab. The application helps with controlling one or multiple robot servos at the same time. 
 ## Notes
