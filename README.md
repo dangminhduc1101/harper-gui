@@ -7,5 +7,5 @@ This application only works in limited functionality with VS debug mode, with th
 2. Arduino microcontroller(s)
 ## Installation
 1. Clone this repository
-2. Open harper_gui_winforms.sln with Visual Studio
+2. Open harper_gui.sln with Visual Studio
 3. Run the program in Debug mode

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace harper_gui_winforms
+namespace harper_gui
 {
     public partial class Action : Form
     {

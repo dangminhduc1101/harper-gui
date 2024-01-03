@@ -1,5 +1,5 @@
 ﻿
-namespace harper_gui_winforms.src
+namespace harper_gui.src
 {
     partial class Gesture
     {

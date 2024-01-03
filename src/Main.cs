@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 
-namespace harper_gui_winforms
+namespace harper_gui
 {
     public partial class Main : Form
     {

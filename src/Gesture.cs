@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace harper_gui_winforms.src
+namespace harper_gui.src
 {
     public partial class Gesture : Form
     {

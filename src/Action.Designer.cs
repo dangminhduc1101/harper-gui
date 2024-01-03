@@ -1,4 +1,4 @@
-﻿namespace harper_gui_winforms
+﻿namespace harper_gui
 {
     partial class Action
     {

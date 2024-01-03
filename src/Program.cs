@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace harper_gui_winforms
+namespace harper_gui
 {
     internal static class Program
     {

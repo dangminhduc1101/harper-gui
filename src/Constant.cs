@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace harper_gui_winforms
+namespace harper_gui
 {
     internal class Constant
     {

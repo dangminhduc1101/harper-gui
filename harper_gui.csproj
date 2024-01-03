@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E128B2DF-8C7F-4134-97C6-D70ADA520F09}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>harper_gui_winforms</RootNamespace>
-    <AssemblyName>harper_gui_winforms</AssemblyName>
+    <RootNamespace>harper_gui</RootNamespace>
+    <AssemblyName>harper_gui</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
